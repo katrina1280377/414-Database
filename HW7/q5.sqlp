@@ -1,0 +1,14 @@
+-- runtime 0.501 sec
+SELECT c.`-car_code` AS country_code,
+       c.name AS country_name,
+       seas
+FROM geo.world AS w 
+UNNEST  w.mondial.country AS c
+LET 
+    seas = (
+        SELECT s.name
+        FROM geo.world AS w, w.mondial.sea AS s, SPLIT(s.`-country`, ' ') AS c2
+        WHERE c2 = c.`-car_code`
+    )
+WHERE ARRAY_COUNT(seas) > 1
+ORDER BY ARRAY_COUNT(seas) DESC;

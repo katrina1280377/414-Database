@@ -1,0 +1,12 @@
+-- runtime 0.321 sec
+SELECT city.name AS city
+FROM geo.world w 
+UNNEST w.mondial.country AS country 
+UNNEST country.province AS province,
+CASE 
+    WHEN is_array(province.city) THEN province.city
+    WHEN province.city IS NOT NULL THEN [province.city]
+    ELSE [] 
+END AS city
+WHERE country.name = 'Peru'
+ORDER BY city;

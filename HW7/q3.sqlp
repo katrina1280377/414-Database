@@ -1,0 +1,12 @@
+-- runtime 0.398 sec
+SELECT rel.`#text` AS religion, 
+       COUNT(*) AS num_countries
+FROM geo.world AS w 
+UNNEST w.mondial.country AS c,
+     CASE 
+         WHEN is_array(c.religions) THEN c.religions
+         WHEN c.religions IS NOT NULL THEN [c.religions]
+         ELSE [] 
+     END AS rel
+GROUP BY rel.`#text`
+ORDER BY num_countries DESC;

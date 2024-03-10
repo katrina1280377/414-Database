@@ -1,0 +1,13 @@
+-- runtime 0.311 sec
+SELECT country.name AS country,
+       country.population AS population,
+       array_count(religions) AS num_religions
+FROM geo.world w UNNEST w.mondial.country AS country
+LET religions = (
+    CASE 
+        WHEN is_array(country.religions) THEN country.religions
+        WHEN country.religions IS NOT NULL THEN [country.religions]
+        ELSE [] 
+    END
+)
+ORDER BY country.name;

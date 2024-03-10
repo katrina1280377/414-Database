@@ -1,0 +1,22 @@
+a.
+{D}+ = {D,B}, discomposed S into S11(D,B), S12{A,C,D,E}
+{CE,A}+ = {A,C,E}, discomposed S12 into S21{A,C,E}, S22{C,E,D}
+
+R(A,B,C,D,E) can be decomposed into R11(D,B) R21(A,C,E) R12(C,E,D)
+
+
+b.
+{A}+ = {A,E}, discomposed S into S11(A,E), S12{A,B,C,D}
+{B,C}+ = {A,B,C}, discomposed S12 into S21{A,B,C}, S22{B,C,D}
+{D,E}+ = {B,C,D}
+
+S(A,B,C,D,E) can be decomposed into S11(A,E) S21(A,B,C) S12(B,C,D)
+
+c.
+A->A B->B C->C D->D
+
+d.
+A->BCD B->ACD C->ABD D->ＡBC
+
+e.
+B->C C->B A->BCD D->ABC

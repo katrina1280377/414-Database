@@ -1,0 +1,12 @@
+-- runtime 0.422 sec
+SELECT eth.`#text` AS ethnic_group,
+       COUNT(c.name) AS num_countries,
+       SUM(FLOAT(eth.`-percentage`)/100.0*FLOAT(c.population)) total_population
+FROM geo.world AS w 
+UNNEST w.mondial.country AS c,
+     CASE 
+         WHEN IS_ARRAY(c.ethnicgroups) THEN c.ethnicgroups
+         WHEN c.ethnicgroups IS NOT NULL THEN [c.ethnicgroups]
+         ELSE [] 
+     END AS eth
+GROUP BY eth.`#text`;
